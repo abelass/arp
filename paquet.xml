@@ -1,24 +1,22 @@
 <paquet
 	prefix="arp"
 	categorie="maintenance"
-	version="1.0.0"
+	version="1.0.1"
 	etat="dev"
 	compatibilite="[3.0.11;3.0.*]"
 	logo="prive/themes/spip/images/arp-64.png"
 	documentation=""
 	schema="1.0.0" 
 >
-	<!--
-		Paquet genere le 2013-08-23 08:08:53
-		(Vous pouvez bien entendu supprimer ces commentaires) 
-	-->
 
 	<nom>ARP</nom>
 
-	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs --> 
 	<auteur lien='http://websimple.be/'>Rainer Müller</auteur>
 
 	<licence>GNU/GPL</licence>
+	
+	<necessite nom="encheres" compatibilite="[1.0.1;]" />
+	<necessite nom="selection_objet" compatibilite="[1.9.2;]" />	
 
 	<!--
 		Exemple de commandes

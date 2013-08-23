@@ -30,25 +30,28 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 **/
 function arp_upgrade($nom_meta_base_version, $version_cible) {
 	$maj = array();
-	# quelques exemples
-	# (que vous pouvez supprimer !)
-	# 
-	# $maj['create'] = array(array('creer_base'));
-	#
-	# include_spip('inc/config')
-	# $maj['create'] = array(
-	#	array('maj_tables', array('spip_xx', 'spip_xx_liens')),
-	#	array('ecrire_config', array('arp', array('exemple' => "Texte de l'exemple")))
-	#);
-	#
-	# $maj['1.1.0']  = array(array('sql_alter','TABLE spip_xx RENAME TO spip_yy'));
-	# $maj['1.2.0']  = array(array('sql_alter','TABLE spip_xx DROP COLUMN id_auteur'));
-	# $maj['1.3.0']  = array(
-	#	array('sql_alter','TABLE spip_xx CHANGE numero numero int(11) default 0 NOT NULL'),
-	#	array('sql_alter','TABLE spip_xx CHANGE texte petit_texte mediumtext NOT NULL default \'\''),
-	# );
-	# ...
 
+	include_spip('inc/config');
+    $maj['create'] = array(
+        array('ecrire_config', 
+            'encheres', 
+                array(
+                'devise' => "EUR",
+                'roles'=>"client_direct,Client directe
+agence,Agence
+client_agence,Client d'agence",'activer_super_encherisseur'=>'on',
+                'roles_super_encherisseur',
+                'roles_super_encherisseur'=>'agence')                         
+            ),
+        array('ecrire_config', 
+            'selection_objet', 
+                array(
+                'objets_cible' => array("auteur"),
+                'selection_rubrique_objet'=>array("auteur"))                           
+            )            
+        );	
+	
+    
 	include_spip('base/upgrade');
 	maj_plugin($nom_meta_base_version, $version_cible, $maj);
 }
