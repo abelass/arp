@@ -1,0 +1,44 @@
+<paquet
+	prefix="arp"
+	categorie="maintenance"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.0.11;3.0.*]"
+	logo="prive/themes/spip/images/arp-64.png"
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet genere le 2013-08-23 08:08:53
+		(Vous pouvez bien entendu supprimer ces commentaires) 
+	-->
+
+	<nom>ARP</nom>
+
+	<!-- cette balise peut etre presente plusieurs fois s'il y a plusieurs auteurs --> 
+	<auteur lien='http://websimple.be/'>Rainer Müller</auteur>
+
+	<licence>GNU/GPL</licence>
+
+	<!--
+		Exemple de commandes
+		* dependances
+		<necessite nom="saisies" compatibilite="[1.21.0;]" />
+		<utilise nom="saisies" compatibilite="[1.21.0;]" />
+		<lib nom="simplehtmldom" lien="http://chemin_vers_archive.zip" />
+		* pipelines
+		<pipeline nom="autoriser" inclure="arp_autorisations.php" />
+		<pipeline nom="insert_head" inclure="arp_pipelines.php" />
+		* declarer un pipeline 
+		<pipeline nom="mon_pipeline" action="" />
+		* parents de menus de SPIP :
+				menu_accueil (A eviter), menu_edition, menu_publication,
+				menu_activite, menu_squelette, menu_administration, menu_configuration 
+		<menu nom="arp" titre="arp:arp_titre" parent="menu_edition"  icone="images/arp-16.png" />
+		* parents d'onglets... configuration, plugins, statistiques, ... 
+		<onglet nom="arp" titre="arp:arp_titre" parent="configuration" icone="images/arp-24.png" />
+	-->
+
+
+
+</paquet>
