@@ -39,16 +39,18 @@ function arp_upgrade($nom_meta_base_version, $version_cible) {
                 'devise' => "EUR",
                 'roles'=>"client_direct,Client directe
 agence,Agence
-client_agence,Client d'agence",'activer_super_encherisseur'=>'on',
+client_agence,Client d'agence",
+                'activer_super_encherisseur'=>'on',
                 'roles_super_encherisseur',
-                'roles_super_encherisseur'=>'agence')                         
+                'roles_super_encherisseur'=>'agence',
+                'activer_palier_encherissment'=>'on')                         
             ),
         array('ecrire_config', 
             'selection_objet', 
                 array(
                 'objets_cible' => array("auteur"),
                 'selection_rubrique_objet'=>array("auteur"))                           
-            )            
+            ),                      
         );	
 	
     

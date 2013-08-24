@@ -16,7 +16,7 @@
 	<licence>GNU/GPL</licence>
 	
 	<necessite nom="encheres" compatibilite="[1.0.1;]" />
-	<necessite nom="selection_objet" compatibilite="[1.9.2;]" />	
+	<necessite nom="selection_objet" compatibilite="[1.9.3;]" />	
 
 	<!--
 		Exemple de commandes
