@@ -1,0 +1,79 @@
+<BOUCLE_principale(ENCHERES_OBJETS) {id_encheres_objet}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+[(#REM) Cf.: http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+]<!--[if lt IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html dir="#LANG_DIR" lang="#LANG" xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" class="[(#LANG_DIR)][ (#LANG)] no-js"> <!--<![endif]-->
+<head>
+<script type='text/javascript'>/*<![CDATA[*/(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);/*]]>*/</script>
+<title>[(#TITRE|couper{80}|textebrut) - ][(#NOM_SITE_SPIP|textebrut)]</title>
+[<meta name="description" content="(#INTRODUCTION{150}|attribut_html)" />]
+[<link rel="canonical" href="(#URL_ENCHERES_OBJET|url_absolue)" />]
+<INCLURE{fond=inclure/head} />
+</head>
+
+<body class="pas_surlignable page_article">
+<div class="page">
+
+	<INCLURE{fond=inclure/header} />
+	<INCLURE{fond=inclure/nav,env} />
+	
+	<div class="main">
+		[(#REM) Contenu principal : contenu de l'article ]
+		<div class="wrapper hfeed">
+		<div class="content hentry" id="content">
+			<p class="arbo"><a href="#URL_SITE_SPIP/"><:accueil_site:></a><BOUCLE_ariane(HIERARCHIE){id_article}> &gt; <a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a></BOUCLE_ariane>[ &gt; <strong class="on">(#TITRE|couper{80})</strong>]</p>
+	
+			<div class="cartouche">
+				<h1 class="#EDIT{titre} surlignable">[(#LOGO_ENCHERES_OBJET|image_reduire{40,*}) ]#TITRE</h1>
+				<p class="info-publi"><B_auteurs><span class="auteurs"><:par_auteur:> <BOUCLE_auteurs(AUTEURS){id_auteur}{tout}>#NOM</BOUCLE_auteurs></span></B_auteurs>
+				    </p>
+
+			</div>
+			[(#REM) Le Formulaire d'enchères]
+			<div class="ajax">
+                #FORMULAIRE_ENCHERE_MISE{#ID_ENCHERES_OBJET}
+            </div>
+			[<div class="#EDIT{texte} texte surlignable">(#TEXTE|image_reduire{500,*})</div>]
+		
+		
+			[(#REM) Gestion du portfolio et des documents ]
+			[(#INCLURE{fond=inclure/documents_encheres_objet,id_encheres_objet, env})]
+
+			
+			[<div class="notes"><hr />(#NOTES)</div>]
+
+	
+		</div><!--.content-->
+		</div><!--.wrapper-->
+	
+	
+		<div class="aside">
+		
+			<INCLURE{fond=inclure/navsub, id_rubrique} />
+			#FORMULAIRE_RECHERCHE
+	
+			[(#REM) Articles dans la meme rubrique ]
+			<B_objets_rubrique>
+			<div class="menu">
+				<h2><:meme_rubrique:></h2>
+				<ul>
+					<BOUCLE_objets_rubrique(ENCHERES_OBJETS) {id_rubrique} {!par date} {0,10}>
+					<li><a href="#URL_ENCHERES_OBJET"[ class="(#EXPOSE)"]>#TITRE</a></li>
+					</BOUCLE_objets_rubrique>
+				</ul>
+			</div>
+			</B_objets_rubrique>
+	
+			
+		</div><!--.aside-->
+	</div><!--.main-->
+
+	<INCLURE{fond=inclure/footer,self=#SELF} />
+
+</div><!--.page-->
+</body>
+</html>
+</BOUCLE_principale>
