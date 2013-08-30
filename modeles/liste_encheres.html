@@ -1,0 +1,40 @@
+#SET{date,#DATE}
+<BOUCLE_condition(CONDITION){si #SESSION{id_auteur}|oui}>
+[(#SET{defaut_tri,#ARRAY{
+    titre,1, 
+    date,-1, 
+    id_encheres_objet,1,
+    points,-1
+}})]<B_liste_encheres_objets>
+#ANCRE_PAGINATION
+<div class="liste-objets encheres_objets">
+<table class='spip liste'>
+    [<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{encheres_objet:info_1_encheres_objet,encheres_objet:info_nb_encheres_objets}})</strong></caption>]
+    <thead>
+        <tr class='first_row'>
+
+            <th class='titre' scope='col'>[(#TRI{titre,<:encheres_objet:label_titre:>,ajax})]</th>
+            <th class='temps_restant' scope='col'>[(#TRI{date_fin,<:encheres_objet:label_temps_restant:>,ajax})]</th>    
+            <th class='prix_actuel' scope='col'>[(#TRI{prix_actuel,<:encheres_objet:label_prix_actuel:>,ajax})]</th>                
+
+        </tr>
+    </thead>
+    <tbody>
+    <BOUCLE_liste_encheres_objets(ENCHERES_OBJETS){id_rubrique?}{id_secteur?}{statut IN publie,mise_en_vente_active}{id_encheres_objet_source?}{id_auteur?}{id_mot?}{id_auteur?}{where?}{recherche?}{tri #ENV{par,num titre},#GET{defaut_tri}}{par titre}{pagination #ENV{nb,10}}>
+        <tr class='[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]'>
+            <td class='titre principale'>[(#LOGO_ENCHERES_OBJET|image_reduire{20,26})]<a href="[(#ID_ENCHERES_OBJET|generer_url_entite{encheres_objet})]" title="<:info_numero_abbreviation|attribut_html:> #ID_ENCHERES_OBJET">[(#RANG). ]#TITRE</a></td>
+            <td class='temps_restant'>[(#DATE_FIN|difference_jour{simple})]</td> 
+            <td class='prix_actuel'>#PRIX_ACTUEL</td>                                   
+        </tr>
+    </BOUCLE_liste_encheres_objets>
+    </tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+</div>
+</B_liste_encheres_objets>[
+<div class="liste-objets encheres_objets caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_encheres_objets>
+</BOUCLE_condition>
+    <b><:encheres:message_loguer:></b>
+    #FORMULAIRE_LOGIN{#SELF}
+<//B_condition>
